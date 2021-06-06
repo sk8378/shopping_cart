@@ -1,5 +1,8 @@
 # shopping_cart.py
 
+import operator
+
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -71,16 +74,14 @@ for selected_id in selected_ids:
     #matching_product = matching_products.append("id")
     #print(matching_product["name"], matching_product["price"])
 
-for product in matching_product:
-    prices = [p for p in products if str(p["id"]) == selected_id]
-    price = prices[0]
-    total_price = prices[float(str('price'))]
+#prices = []
 
-print(Type(total_price))
+price= []
 
+for selected_id in selected_ids:
+    matching_products = [p for p in products if str(p["id"]) == selected_id]
+    matching_product = matching_products[0]
+    price.append(matching_product["price"])
 
-#total = sum(total_price)
-#print(total)
-
-
+total = (sum(price))
 
