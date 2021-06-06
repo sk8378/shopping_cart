@@ -1,6 +1,7 @@
 # shopping_cart.py
 
 import operator
+import datetime
 
 
 products = [
@@ -39,13 +40,16 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
+NYC_Tax = 0.0875
+Company_name = "Samantha's Grocery"
+Company_website = "www.SamanthaGrocery.com"
+now = datetime.datetime.now()
+Closing_message = "Thanks for shopping with us!"
+
 
 # TODO: write some Python code here to produce the desired output
 
-#print(len(products))
-
-# 1) capture product ids until we're done
-# use infinite whole loop
+#Capture Products Being Purchased (ie. scan)
 
 selected_ids = []
 
@@ -59,22 +63,35 @@ while True:
 
 selected_ids_count = len(selected_ids) 
 
-print(f"TOTAL PRODUCTS PURCHASED: {selected_ids_count}")    
+print("------------------------------------------------")
+print()
+print(Company_name)
+print(Company_website)
+print()
+print("------------------------------------------------")
+print()
+print("Time of Transaction: ", now.strftime('%Y-%m-%d %H:%M'))
+print()
+print("------------------------------------------------")
+print()
+print("Items Purchased: ")
+print()
 
-
-# 2) perform product lookups to determine what the product's name and prices are
-# selected_ids = ["1","2","3","2""1"]
+# Compile list of the products purchased and print
 for selected_id in selected_ids:
-       #look up the corresponding product!
-    #or manybe display the selected product's name and price
-
+  
     matching_products = [p for p in products if str(p["id"]) == selected_id]
     matching_product = matching_products[0]
-    print(str(matching_product["name"]) +"---(" + str(matching_product["price"]) + ")")
-    #matching_product = matching_products.append("id")
-    #print(matching_product["name"], matching_product["price"])
+    print(str(matching_product["name"]) +"---(" + str(to_usd(matching_product["price"])) + ")")
 
-#prices = []
+#print total number of products purchased (so customer can confirm)
+
+print()
+print("------------------------------------------------")
+print()
+print(f"Total Products Purchased: {selected_ids_count}")   
+
+#Calculate subtotal
 
 price= []
 
@@ -83,5 +100,30 @@ for selected_id in selected_ids:
     matching_product = matching_products[0]
     price.append(matching_product["price"])
 
-total = (sum(price))
+sub_total = (sum(price))
+
+print("Item Subtotal: ", to_usd(sub_total))
+
+#calculate NYC Tax
+
+Tax = sub_total * NYC_Tax
+
+print("Total Tax: ", to_usd(Tax))
+
+#Calculate total
+
+Total = sub_total + Tax
+
+print("Total: ",to_usd(Total))
+
+print()
+print("------------------------------------------------")
+print()
+print(Closing_message)
+print()
+print("------------------------------------------------")
+
+
+
+
 
