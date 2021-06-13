@@ -2,6 +2,11 @@
 
 import operator
 import datetime
+import tkinter
+
+import os
+
+Tax_Rate = float(os.getenv("sales_tax", default = "0.07"))
 
 
 products = [
@@ -40,7 +45,6 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
-NYC_Tax = 0.0875
 Company_name = "Samantha's Grocery"
 Company_website = "www.SamanthaGrocery.com"
 now = datetime.datetime.now()
@@ -104,9 +108,9 @@ sub_total = (sum(price))
 
 print("Item Subtotal: ", to_usd(sub_total))
 
-#calculate NYC Tax
+#calculate Tax Rate
 
-Tax = sub_total * NYC_Tax
+Tax = sub_total * Tax_Rate
 
 print("Total Tax: ", to_usd(Tax))
 
