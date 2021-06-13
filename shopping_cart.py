@@ -2,8 +2,6 @@
 
 import operator
 import datetime
-import tkinter
-
 import os
 
 Tax_Rate = float(os.getenv("sales_tax", default = "0.07"))
@@ -67,6 +65,8 @@ while True:
 
 selected_ids_count = len(selected_ids) 
 
+#print beginning of receipt
+
 print("------------------------------------------------")
 print()
 print(Company_name)
@@ -119,6 +119,8 @@ print("Total Tax: ", to_usd(Tax))
 Total = sub_total + Tax
 
 print("Total: ",to_usd(Total))
+
+#print rest of receipt
 
 print()
 print("------------------------------------------------")
